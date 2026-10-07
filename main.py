@@ -1,10 +1,13 @@
+import os
 from flask import Flask, render_template, request, session, redirect, url_for
 from pymongo import MongoClient
 
 app = Flask(__name__)
-app.secret_key = "99009"
+app.secret_key = os.environ.get("SECRET_KEY", "local-dev-only")
 
-client = MongoClient("mongodb://localhost:27017/")
+mongo_uri = os.environ.get("MONGODB_URI", "mongodb://localhost:27017/")
+client = MongoClient(mongo_uri)
+
 db = client["blood_db"]
 blood_collection = db["blood"]
 
@@ -37,7 +40,6 @@ def find_blood():
     return render_template("find_donor.html", rows=rows)
 
 
-# Blood-group search form ke liye GET endpoint
 @app.route("/homeblood")
 def home_blood():
     bloodgroup = request.args.get("bloodgroup")
