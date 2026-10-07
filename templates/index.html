@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Management System</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        section {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            background: url("https://media.gettyimages.com/id/1214059080/vector/two-hands-with-a-blood-donation-symbol.jpg?s=612x612&w=0&k=20&c=J-5qjrnPvXuSKaHOj6msTXVSU-rxEYLSmJTP0DdWmIs=") no-repeat center;
+            background-size: cover;
+        }
+
+        header {
+            position: relative;
+            width: 100%;
+            padding: 30px 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #000;
+            font-size: 30px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        header .logo img {
+            display: block;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        header .navigation a {
+            color: #000;
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+            padding: 2px 15px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+
+        header .navigation a:not(:last-child) {
+            margin-right: 30px;
+        }
+
+        header .navigation a:hover {
+            background: #fff;
+        }
+
+        .content {
+            max-width: 650px;
+            margin: 60px 100px;
+        }
+
+        .content .info h2 {
+            color: whitesmoke;
+            font-size: 55px;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 2px;
+            line-height: 60px;
+            margin-bottom: 30px;
+        }
+
+        .content .info h2 span {
+            color: #000;
+            font-size: 50px;
+            font-weight: 600;
+        }
+
+        .content .info p {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 40px;
+        }
+
+        .content .info-btn {
+            display: inline-block;
+            color: #fff;
+            background: #226A80;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 2px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .content .info-btn:hover {
+            background: #0C4F60;
+        }
+
+        .media-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+        }
+
+        .media-icons a {
+            position: relative;
+            color: #111;
+            font-size: 25px;
+            transition: transform 0.3s;
+        }
+
+        .media-icons a:not(:last-child) {
+            margin-right: 60px;
+        }
+
+        .media-icons a:hover {
+            transform: scale(1.5);
+        }
+
+        @media (max-width: 960px) {
+            header {
+                padding: 24px;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            header .navigation {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            header .navigation a:not(:last-child) {
+                margin-right: 0;
+            }
+
+            .content {
+                margin: 60px 24px;
+            }
+
+            .content .info h2 {
+                font-size: 45px;
+                line-height: 50px;
+            }
+
+            .content .info h2 span {
+                font-size: 40px;
+            }
+
+            .content .info p {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            header {
+                padding: 20px;
+            }
+
+            header .logo {
+                font-size: 24px;
+            }
+
+            .content {
+                margin: 40px 20px;
+            }
+
+            .content .info h2 {
+                font-size: 35px;
+                line-height: 40px;
+            }
+
+            .content .info h2 span {
+                font-size: 30px;
+            }
+
+            .media-icons a:not(:last-child) {
+                margin-right: 35px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <header>
+            <h2>
+                <a href="/index" class="logo">
+                    <img
+                        src="{{ url_for('static', filename='images/Mylogo.png') }}"
+                        alt="Niranjan Yadav"
+                    >
+                    <span>Donate</span>
+                </a>
+            </h2>
+
+            <nav class="navigation">
+                <a class="active" href="/index">Home</a>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+                <a href="/register">Be A Donor</a>
+                <a href="/find_blood">Find Donor</a>
+                <a href="/login">Login</a>
+            </nav>
+        </header>
+
+        <div class="content">
+            <div class="info">
+                <h2>BLOOD MANAGEMENT <br><span>OUR GOAL!</span></h2>
+                <p>
+                    To provide a way for a safer and better tomorrow by bringing blood donors and
+                    people in need together on one platform. This initiative uses contemporary
+                    technology to help fulfill blood requests in our city.
+                </p>
+                <a href="/about" class="info-btn">More Info</a>
+            </div>
+        </div>
+
+        <div class="media-icons">
+            <a href="https://www.facebook.com/profile.php?id=100032803960635" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://twitter.com/abd_villiers17?lang=en" aria-label="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://instagram.com/iam_nani41?igshid=YmMyMTA2M2Y=" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </section>
+</body>
+</html>

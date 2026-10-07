@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Blood Donor</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main2.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script defer src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    <style>
+        .site-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 12px 3%;
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #000;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .logo-box img {
+            display: block;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        #nav ul {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .blood-search {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 12px;
+            background-color: rgb(158, 242, 113);
+        }
+
+        @media (max-width: 700px) {
+            .site-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <a class="logo-box" href="/index">
+            <img
+                src="{{ url_for('static', filename='images/Mylogo.png') }}"
+                alt="Niranjan Yadav"
+            >
+            <span>MyWebsite</span>
+        </a>
+
+        <nav id="nav">
+            <ul>
+                <li><a href="/index">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/register">Be A Donor</a></li>
+                <li><a class="active" href="/find_blood">Find Donor</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div style="position: relative; height: 350px;">
+        <span class="info2" style="left: 36%;">FIND BLOOD</span>
+        <img
+            class="myFrontPic col-12"
+            src="{{ url_for('static', filename='images/img15.jpg') }}"
+            alt="Find a blood donor"
+            style="height: 350px;"
+        >
+    </div>
+
+    <br>
+
+    <div style="margin: 0; padding: 0 3% 0 7%; text-align: center;">
+        <div class="col-11" style="background-color: rgba(82, 127, 99, 0.5); padding: 0;">
+            <form class="blood-search" action="{{ url_for('home_blood') }}" method="get">
+                <label for="bloodgroup" style="font-size: 20px; color: #bb0000;">
+                    Select your blood group:
+                </label>
+
+                <select id="bloodgroup" name="bloodgroup" required>
+                    <option value="">Enter Blood Group</option>
+                    <option value="1">A+</option>
+                    <option value="2">A-</option>
+                    <option value="3">B+</option>
+                    <option value="4">B-</option>
+                    <option value="5">O+</option>
+                    <option value="6">O-</option>
+                    <option value="7">AB+</option>
+                    <option value="8">AB-</option>
+                </select>
+
+                <button type="submit">Find Donors</button>
+            </form>
+
+            <div id="txtHint" style="padding: 5% 0; width: 100%; overflow: auto;">
+                <h3>Blood Type 1: A+, 2: A-, 3: B+, 4: B-, 5: O+, 6: O-, 7: AB+, 8: AB-</h3>
+
+                <table border="2" style="margin: 15px auto;">
+                    <thead>
+                        <tr>
+                            <th>Name of Donor</th>
+                            <th>Date of Birth</th>
+                            <th>Gender</th>
+                            <th>Blood Group</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                            <th>Town</th>
+                            <th>State</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in rows %}
+                        <tr>
+                            <td>{{ row['name'] }}</td>
+                            <td>{{ row['dob'] }}</td>
+                            <td>{{ row['gender'] }}</td>
+                            <td>{{ row['bloodgroup'] }}</td>
+                            <td>{{ row['pno'] }}</td>
+                            <td>{{ row['email'] }}</td>
+                            <td>{{ row['town'] }}</td>
+                            <td>{{ row['city'] }}</td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="8">Koi donor nahi mila. Blood group select karke dobara search karein.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer">
+        {% include "footer.html" %}
+    </footer>
+</body>
+</html>

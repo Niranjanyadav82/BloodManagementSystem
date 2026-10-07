@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood-Cell - Register</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main2.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script defer src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    <style>
+        .site-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 20px;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .site-logo img {
+            display: block;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .register-form input.in,
+        .register-form select {
+            max-width: 100%;
+        }
+
+        @media (max-width: 600px) {
+            .register-form-wrap {
+                padding: 0 5% !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="col-12 hero-banner">
+        <div id="nav" class="col-12">
+            <a class="site-logo" href="/index">
+                <img
+                    src="{{ url_for('static', filename='images/Mylogo.png') }}"
+                    alt="Niranjan Yadav"
+                >
+                <span>Donate</span>
+            </a>
+
+            <ul>
+                <li><a href="/index">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a class="active" href="/register">Be A Donor</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/find_blood">Find Donor</a></li>
+            </ul>
+        </div>
+
+        <span class="info2">REGISTER</span>
+
+        <img
+            class="myFrontPic"
+            src="{{ url_for('static', filename='images/img1.jpg') }}"
+            alt="Blood donor registration"
+        >
+    </div>
+
+    <br>
+
+    <div class="col-12 register-form-wrap" style="overflow: auto; padding: 0 20%;">
+        <div class="col-12 register-form" style="text-align: left; padding: 5%; background-color: rgb(217, 219, 224);">
+            <form action="/passdb" method="post">
+                <label for="username">Username (required)<span style="color: red;">*</span></label><br>
+                <input class="in" id="username" type="text" name="username" placeholder="Enter username" required style="color: black;"><br><br>
+
+                <label for="password">Password (required)<span style="color: red;">*</span></label><br>
+                <input class="in" id="password" type="password" name="password" placeholder="Enter password" required style="color: black;"><br><br>
+
+                <label for="fullname">Full name (required)<span style="color: red;">*</span></label><br>
+                <input class="in" id="fullname" type="text" name="fullname" placeholder="Enter full name" required style="color: black;"><br><br>
+
+                <label for="dob">Date of birth (required)<span style="color: red;">*</span></label><br>
+                <input class="in" id="dob" type="date" name="dob" required><br><br>
+
+                <span>Gender (required)<span style="color: red;">*</span></span><br>
+                <label><input type="radio" name="gender" value="male" checked> Male</label>
+                <label><input type="radio" name="gender" value="female"> Female</label>
+                <label><input type="radio" name="gender" value="other"> Other</label><br><br>
+
+                <label for="bloodgroup">Blood group (required)<span style="color: red;">*</span></label><br>
+                <select id="bloodgroup" name="bloodgroup" required>
+                    <option value="">Enter Blood Group</option>
+                    <option value="1">A+</option>
+                    <option value="2">A-</option>
+                    <option value="3">B+</option>
+                    <option value="4">B-</option>
+                    <option value="5">O+</option>
+                    <option value="6">O-</option>
+                    <option value="7">AB+</option>
+                    <option value="8">AB-</option>
+                </select><br><br>
+
+                <label for="mobile">Mobile (required)<span style="color: red;">*</span></label><br>
+                <input class="in" id="mobile" type="tel" name="mobile" placeholder="Enter mobile number" pattern="[0-9]{10}" required style="color: black;"><br><br>
+
+                <label for="email">Email (required)<span style="color: red;">*</span></label><br>
+                <input class="in" id="email" type="email" name="email" placeholder="Enter your email" required style="color: black;"><br><br>
+
+                <label for="town">Town</label><br>
+                <input class="in" id="town" type="text" name="town" placeholder="Enter town" style="color: black;"><br><br>
+
+                <label for="state">State (required)<span style="color: red;">*</span></label><br>
+                <input class="in" id="state" type="text" name="state" placeholder="Enter state" required style="color: black;"><br><br>
+
+                <input class="qw" style="font-size: 16px; color: white;" type="submit" value="SEND">
+            </form>
+        </div>
+    </div>
+
+    {% if resultCode is defined %}
+        <h1 style="text-align: center;">{{ resultCode }}</h1>
+    {% endif %}
+
+    <br>
+</body>
+</html>

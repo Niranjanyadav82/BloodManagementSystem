@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+  <title>Blood Management System</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: url("https://img.freepik.com/free-photo/book-with-green-board-background_1150-3837.jpg?w=740&t=st=1667032601~exp=1667033201~hmac=e3f1f227f5492de18370dddf68c33e2e929f116095486f8f4fbcb821056a0d80") no-repeat center;
+      background-size: cover;
+    }
+
+    section {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      width: 100%;
+      padding: 30px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    header .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #000;
+      font-size: 30px;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    header .logo img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    header .navigation {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    header .navigation a {
+      color: #000;
+      text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 1px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      transition: background 0.3s;
+    }
+
+    header .navigation a:hover {
+      background: #fff;
+    }
+
+    .contact-section {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      padding: 30px;
+    }
+
+    .contact-info {
+      color: #000;
+      max-width: 500px;
+      line-height: 2.5;
+      padding-left: 20px;
+      font-size: 18px;
+      flex: 1;
+    }
+
+    .contact-info i {
+      margin-right: 20px;
+      font-size: 25px;
+    }
+
+    .contact-form {
+      max-width: 700px;
+      margin-right: 30px;
+      flex: 1;
+    }
+
+    .contact-form h2 {
+      color: #fff;
+      text-align: center;
+      font-size: 35px;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+    }
+
+    .contact-form .text-box {
+      background: #000;
+      color: #fff;
+      border: none;
+      width: calc(50% - 10px);
+      height: 50px;
+      padding: 12px;
+      font-size: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+
+    .contact-form .text-box:first-child {
+      margin-right: 15px;
+    }
+
+    .contact-form textarea {
+      background: #000;
+      color: #fff;
+      border: none;
+      width: 100%;
+      padding: 12px;
+      font-size: 15px;
+      min-height: 200px;
+      max-height: 400px;
+      resize: vertical;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+
+    .contact-form .send-btn {
+      float: right;
+      background: #2E94E3;
+      color: #fff;
+      border: none;
+      width: 120px;
+      height: 40px;
+      font-size: 15px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .contact-form .send-btn:hover {
+      background: #0582E3;
+    }
+
+    @media screen and (max-width: 950px) {
+      header {
+        padding: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .contact-section {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .contact-info,
+      .contact-form {
+        max-width: none;
+        margin: 20px;
+        padding-left: 0;
+      }
+
+      .contact-form h2 {
+        font-size: 30px;
+      }
+
+      .contact-form .text-box {
+        width: 100%;
+      }
+
+      .contact-form .text-box:first-child {
+        margin-right: 0;
+      }
+    }
+
+    .alert-success,
+    .alert-error {
+      z-index: 1;
+      font-size: 18px;
+      padding: 20px 40px;
+      min-width: 420px;
+      position: fixed;
+      right: 0;
+      top: 10px;
+      border-radius: 4px;
+    }
+
+    .alert-success {
+      background: #D4EDDA;
+      border-left: 8px solid #3AD66E;
+    }
+
+    .alert-error {
+      background: #FFF3CD;
+      border-left: 8px solid #FFA502;
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <header>
+      <h2>
+        <a href="/index" class="logo">
+          <img
+            src="{{ url_for('static', filename='images/Mylogo.png') }}"
+            alt="Niranjan Yadav"
+          >
+          <span>Donate</span>
+        </a>
+      </h2>
+
+      <nav class="navigation">
+        <a href="/index">Home</a>
+        <a href="/about">About</a>
+        <a class="active" href="/contact">Contact</a>
+        <a href="/register">Be A Donor</a>
+        <a href="/find_blood">Find Donor</a>
+        <a href="/login">Login</a>
+      </nav>
+    </header>
+
+    <div class="contact-section">
+      <div class="contact-info">
+        <div><i class="fas fa-map-marker-alt"></i>ARA 802301, Bihar, India</div>
+        <div><i class="fas fa-envelope"></i>bloodmanagement@email.com</div>
+        <div><i class="fas fa-phone"></i>+91 8252773124</div>
+        <div><i class="fas fa-clock"></i>Mon - Fri 8:00 AM to 5:00 PM</div>
+      </div>
+
+      <div class="contact-form">
+        <h2>Contact Us</h2>
+        <form class="contact" action="" method="post">
+          <input type="text" name="name" class="text-box" placeholder="Your Name" required>
+          <input type="email" name="email" class="text-box" placeholder="Your Email" required>
+          <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+          <input type="submit" name="submit" class="send-btn" value="Send">
+        </form>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
